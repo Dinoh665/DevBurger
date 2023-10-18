@@ -1,13 +1,15 @@
 const list = document.querySelector("ul")
-let myLi = ''
 const buttonShowAll = document.querySelector(".show-all")
 const buttonDiscont = document.querySelector(".desconto")
 
 
 console.log(list)
 
-function opções() {
-    menuOptions.forEach(product => {
+function opções(array) {
+    myLi = ''
+
+
+    array.forEach(product => {
         myLi += `
             <li>
                 <img src="${product.src}" alt="bacon-egg">
@@ -19,7 +21,7 @@ function opções() {
     list.innerHTML = myLi
 }
 
-buttonShowAll.addEventListener("click", opções)
+buttonShowAll.addEventListener("click",() => opções(menuOptions))
 
 
 function discount() {
@@ -28,6 +30,9 @@ function discount() {
         ...product,
         price: product.price * 0.9,
     }))
+
+    opções(newPrices)
+
 
     console.log(newPrices)
 
