@@ -1,9 +1,21 @@
 const list = document.querySelector("ul")
 const buttonShowAll = document.querySelector(".show-all")
 const buttonDiscont = document.querySelector(".desconto")
-
+const buttonSum = document.querySelector(".somar")
+const buttonfilter = document.querySelector(".filtrar")
 
 console.log(list)
+
+function format(value){
+
+    const currency = value.toLocaleString('pt-br', {
+        style: 'currency',
+        currency: 'BRL',
+    })
+
+    return currency
+}
+
 
 function opções(array) {
     myLi = ''
@@ -14,7 +26,8 @@ function opções(array) {
             <li>
                 <img src="${product.src}" alt="bacon-egg">
                 <p>${product.name}</p>
-                <p class="item-price">R$ ${product.price}</p>
+function format(value){
+                <p class="item-price">${format(product.price)}</p>
             </li>
             `
     })
@@ -39,3 +52,33 @@ function discount() {
 }
 
 buttonDiscont.addEventListener("click", discount)
+
+
+function sumAll(){
+
+    const sum = menuOptions.reduce( (acc, value) => {
+
+       return acc + value.price
+
+    }, 0)
+    
+    list.innerHTML = `
+    <li>
+        <p>O valor total dos itens é ${format(sum)}</p>
+    </li>
+    `
+
+}
+
+buttonSum.addEventListener("click", sumAll)
+
+
+function filterVegan() {
+
+    const filter = menuOptions.filter( (product) => product.vegan)
+
+    opções(filter)
+
+}
+
+buttonfilter.addEventListener("click", filterVegan)
