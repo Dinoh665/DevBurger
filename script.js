@@ -26,7 +26,6 @@ function opções(array) {
             <li>
                 <img src="${product.src}" alt="bacon-egg">
                 <p>${product.name}</p>
-function format(value){
                 <p class="item-price">${format(product.price)}</p>
             </li>
             `
